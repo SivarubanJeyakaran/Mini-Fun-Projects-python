@@ -16,8 +16,14 @@ def play_flames():
     # Remove common letters
     for letter in list1[:]:  # Create a copy to iterate
         if letter in list2:
-            list1.remove(letter)
-            list2.remove(letter)
+        # Count the minimum number of times the letter appears in both lists
+            # This handles multiple common occurrences (e.g., two 'a's in both)
+            min_count = min(list1.count(letter), list2.count(letter))
+            
+            # Remove that number of occurrences from BOTH lists
+            for _ in range(min_count):
+                list1.remove(letter)
+                list2.remove(letter)
     
     # Count remaining letters
     count = len(list1) + len(list2)
